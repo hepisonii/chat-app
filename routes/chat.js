@@ -6,7 +6,6 @@ const chatRouter = express.Router();
 chatRouter.get("/:id",async (req,res) => {
     const id = req.params.id;
     const user = await User.findById(id);
-    console.log("User: ",user);
     const userId = req.user._id;
     const allMessages = await Chat.find({
         $or: [
@@ -22,17 +21,14 @@ chatRouter.get("/:id",async (req,res) => {
 });
 
 chatRouter.post("/:id", async (req,res) => {
-    console.log("Request Received");
     const id = req.params.id;
     const user = await User.findById(id);
     const {content} = req.body;
-    console.log("Message: ", req.body);
     const message = await Chat.create({
         content,
         sender: req.user._id,
         receiver: id,
     })
-    console.log("Message details: ", message);
     return res.redirect(`/chat/${id}`);
 })
 

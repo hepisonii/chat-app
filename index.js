@@ -23,7 +23,6 @@ const io = new Server(server);
 io.on("connection", (socket) => {
     socket.on("join", (senderId) => {
         socket.join(senderId);
-        console.log("JOINED", senderId);
     })
     socket.on("message", ({senderId, receiverId, message}) => {
         io.to(senderId).emit("receivedMessage", {
@@ -60,6 +59,5 @@ app.get("/", async (req,res) => {
     });
 });
 
-server.listen(PORT, () => {
-    console.log(`Server started at ${PORT}`);
+server.listen(process.env.PORT || "8000", () => {
 });

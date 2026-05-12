@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./partials/head") %>
+    <title> chat-app </title>
+    <style>
+        body {
+  font-family: Arial, sans-serif;
+  background-color: #0f172a;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.user-card {
+  background: #1e293b;
+  color: #fff;
+  padding: 16px 20px;
+  border-radius: 12px;
+  width: 280px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.user-card:hover {
+  transform: translateY(-4px);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  background: #3b82f6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.username {
+  margin: 0;
+  font-size: 16px;
+}
+
+.status {
+  margin: 0;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.message-btn {
+  background: #22c55e;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.message-btn:hover {
+  background: #16a34a;
+}
+    </style>
+</head>
+<body>
+    <%- include("./partials/nav")%>
+    <div style="display:flex">
+    <% allUsers.forEach(users => { %>
+        <% if (users.email != locals.user.email) { %>
+         <div class="user-card">
+            <div class="user-info">
+                <div class="avatar">U</div>
+                    <div class="details">
+                        <h3 class="username"><%= users.name %></h3>
+                        <p class="status">Online</p>
+                    </div>
+                </div>
+            <button class="message-btn"><a href="/chat/<%= users._id %>" style="text-decoration: none;color:white;">Message </a></button>
+        </div>
+        <% } %>
+    <% }) %>
+    </div>
+    <%- include("./partials/script")%>
+</body>
+</html>

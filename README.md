@@ -2,6 +2,10 @@
 
 A real-time chat application built using Node.js, Express, Socket.IO, and MongoDB that enables users to communicate instantly with each other.
 
+## Live Link:
+https://chat-app-production-3116.up.railway.app
+Just Signup and start chating with me now!🚀
+
 ## 🚀 Features
 🔐 User Authentication (JWT-based)
 💬 Real-time messaging using Socket.IO

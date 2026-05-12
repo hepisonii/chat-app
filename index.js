@@ -1,5 +1,5 @@
 require("dotenv").config();
-
+console.log("Mongo: ", process.env.MONGO_URL);
 const express = require("express");
 const http = require("http");
 
@@ -18,7 +18,7 @@ const chatRouter = require("./routes/chat");
 
 
 connectMongoDB(process.env.MONGO_URL);
-const io = new Server(server);
+const io = new Server(server);  
 
 io.on("connection", (socket) => {
     socket.on("join", (senderId) => {

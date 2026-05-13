@@ -26,10 +26,12 @@ io.on("connection", (socket) => {
     socket.on("message", ({senderId, receiverId, message}) => {
         io.to(senderId).emit("receivedMessage", {
             sender: senderId,
+            receiver: receiverId,
             message
         })
         io.to(receiverId).emit("receivedMessage", {
             sender: senderId,
+            receiver: receiverId,
             message
         });
     });

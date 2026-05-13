@@ -142,10 +142,11 @@
         btn.addEventListener("click", (e) => {
             const message = messageInput.value;
             console.log("Message: ",messageInput);
-            socket.emit("message", ({senderId, receiverId, message }));
+            socket.emit("message", ({senderId, receiverId, message })); 
             
         })
-        socket.on("receivedMessage", ({sender,message}) => {
+        socket.on("receivedMessage", ({sender,receiver, message}) => {
+          if(senderId === sender || receiverId === receiver){
             const div = document.createElement("div");
             if(sender === senderId){
               div.className = "message sent"
@@ -155,6 +156,7 @@
             }
             div.innerText = message;
             chatMessages.appendChild(div);
+          }
             chatMessages.scrollTo({
   top: chatMessages.scrollHeight,
   behavior: "smooth"
